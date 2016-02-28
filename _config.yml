@@ -12,11 +12,11 @@ markdown: kramdown
 highlighter: rouge
 
 analytics-google: 'UA-MYANALYTICS'
-disqus: mydisqus
+disqus: timkham
 
 # if you don't have any of social below, comment the line
 #facebook: myfacebook
-#twitter: mytwitter
+twitter: tim_kham
 #instagram: myinstagram
 linkedin: in/timur-khamrakulov-14617646
 #youtube: myyoutube
@@ -42,10 +42,10 @@ read-time: true
 show-tags: true
 
 # related posts inside a post?
-related: true
+related: false
 
 # do you want some animations?
-animation: true
+animation: false
 
 gems:
   - jemoji
