@@ -29,7 +29,7 @@ email: timur.khamrakulov@gmail.com
 # paginate_path: "blog/:num/"
 
 # if you don't need projects, comment the *projects* configs below
-projects: false
+projects: true
 
 # if you don't need about or blog, comment them out below
 about: true
