@@ -9,7 +9,6 @@ tag:
 - mongodb
 - scala mongo driver
 blog: true
-star: true
 ---
 
 ## Introduction:
