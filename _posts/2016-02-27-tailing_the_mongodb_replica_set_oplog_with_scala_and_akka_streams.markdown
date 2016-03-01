@@ -38,7 +38,7 @@ You will also need MongoDB Replica Set, I would recommend to use official [mongo
 
 #### MongoDB Scala Driver and Akka Streams
 
-Unfortunately there is no built in functionality to integrate Akka Strams and MongoDB driver, but Akka Streams have a good integration with [Reactive Streams](http://www.reactive-streams.org/) as well as recently released new official asynchronous scala driver from MongoDB. It is using `Observable` model, which can be converted to Reactive Streams `Publisher` in few lines of code, also they already provide an [implicit based conversion example](https://github.com/mongodb/mongo-scala-driver/blob/master/examples/src/test/scala/rxStreams/Implicits.scala) which we will be using as integration point between this two libraries.
+Unfortunately there is no built in functionality to integrate Akka Strams and MongoDB driver, but Akka Streams have a good integration with [Reactive Streams](http://www.reactive-streams.org/) as well as recently released new official asynchronous scala driver from MongoDB. It is using `Observable` model, which can be converted to Reactive Streams `Publisher` in few lines of code, also they already provide an [implicit based conversion example](https://github.com/mongodb/mongo-scala-driver/blob/master/examples/src/test/scala/rxStreams/Implicits.scala) which we will be using as integration point between these two libraries.
 
 ## MongoDB oplog tailing query
 
