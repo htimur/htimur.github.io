@@ -36,16 +36,34 @@ Here is the build file:
 
 You will also need MongoDB Replica Set, I would recommend to use official [mongo docker image](https://hub.docker.com/_/mongo/).
 
-#### MongoDB Scala Driver and Akka Streams
-
-Unfortunately there is no built in functionality to integrate Akka Strams and MongoDB driver, but Akka Streams have a good integration with [Reactive Streams](http://www.reactive-streams.org/) as well as recently released new official asynchronous scala driver from MongoDB. It is using `Observable` model, which can be converted to Reactive Streams `Publisher` in few lines of code, also they already provide an [implicit based conversion example](https://github.com/mongodb/mongo-scala-driver/blob/master/examples/src/test/scala/rxStreams/Implicits.scala) which we will be using as integration point between these two libraries.
-
 ## MongoDB oplog tailing query
 
-Now we should define the query, assuming that we already have an esteblished connection. Here is the example:
+We should define the query, assuming that we already have an established connection. Here is an example:
 {% gist htimur/68f2639d98269c1026a0 %}
 
-As you can see we are defining a tailable cursor with no timeout, also the `op` field of oplog document which is defining the operation, should be a CRUD operation `i/d/u`.
+As you can see we are defining a tailable cursor with no timeout, also the `op` field of oplog document which is defining the operation, should be a [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operation `i/d/u`.
+
+## Small Introduction to Akka Stream terminology
+
+From [documentation](http://khamrakulov.de/tailing_the_mongodb_replica_set_oplog_with_scala_and_akka_streams/):
+
+>Linear processing pipelines can be expressed in Akka Streams using the following core abstractions:
+
+>**Source** - A processing stage with exactly one output, emitting data elements whenever downstream processing stages are ready to receive them.
+
+>**Sink** - A processing stage with exactly one input, requesting and accepting data elements possibly slowing down the upstream producer of elements
+
+>**Flow** - A processing stage which has exactly one input and output, which connects its up- and downstreams by transforming the data elements flowing through it.
+
+>**RunnableGraph** - A Flow that has both ends "attached" to a Source and Sink respectively, and is ready to be run().
+
+In our case we will be using only `Source` and `Sink`
+
+For more information please check the [documentation](http://doc.akka.io/docs/akka/2.4.2/scala/stream/index.html).
+
+#### MongoDB Scala Driver and Akka Stream
+
+Unfortunately there is no built in functionality to integrate Akka Strams and MongoDB driver, but Akka Streams have a good integration with [Reactive Streams](http://www.reactive-streams.org/) as well as recently released new official asynchronous scala driver from MongoDB. It is using `Observable` model, which can be converted to Reactive Streams `Publisher` in a few lines of code, also MongoDB team provide an [implicit based conversion example](https://github.com/mongodb/mongo-scala-driver/blob/master/examples/src/test/scala/rxStreams/Implicits.scala) which we will be using as an integration point between these two libraries.
 
 ## Defining the stream Source
 
@@ -73,12 +91,26 @@ That was easy, isn't it? =)
 Anything you can imagine, for now I'll just print the documents to `STDOUT`
 
 {% highlight scala %}
+source.runWith(Sink.foreach(println))
+{% endhighlight %}
+
+or use shortcut:
+
+{% highlight scala %}
 source.runForeach(println)
 {% endhighlight %}
 
 this will print all CRUD operations on repset from begining to end and will be waiting for any new operations.
 
 You can make more specific query and define the database and collection names you are interested in, also define the time from which you want the documents. I'll leave this up to you.
+
+#### Why?
+
+You may wander why do we need to do all this conversions from `Observable` to `Publisher` and then to the `Source`, when we could simply stick to the Reactive Streams `Publisher` or even use `Observables`.
+
+Well `Observables` model is quite similar to Reactive Streams API, but they just define a common mechanism of how to move data across an asynchronous boundary without losses, buffering or resource exhaustion, when Akka Streams API is focusing on formulation of transformations on data streams.
+
+So if you are interested only in moving data from oplog somewhere else you could use the `Observables` model from MongoDB driver, but as soon as there is a need in transformations then Akka Stream is the choice.
 
 ## Summary
 
