@@ -1,7 +1,7 @@
 ---
 title: "Tailing the MongoDB Oplog on Sharded Clusters with Scala and Akka Streams"
 layout: post
-date: 2016-03-17 21:00
+date: 2016-03-16 21:00
 tag:
 - scala
 - akka
