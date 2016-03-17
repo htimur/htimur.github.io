@@ -45,7 +45,7 @@ In production architecture each shard is represented by Replica Set:
 
 ## MongoDB internal operations
 
-Due to distribution of data on multiple nodes, MongoDB have cluster-internal operations  [`balancing`](https://docs.mongodb.org/manual/tutorial/manage-sharded-cluster-balancer/), which are reflected in `oplog`. These operations have extra field `fromMigrate`, since we are not interested in these operations, we will update our `oplog` query to exclude them.
+Due to distribution of data on multiple nodes, MongoDB have cluster-internal operations, which are reflected in `oplog`. These operations have extra field `fromMigrate`, since we are not interested in these operations, we will update our `oplog` query to exclude them.
 
 {% gist htimur/a87dce28668a82000fcf %}
 
