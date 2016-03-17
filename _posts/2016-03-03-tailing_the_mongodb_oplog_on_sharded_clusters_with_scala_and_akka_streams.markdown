@@ -113,3 +113,5 @@ As an alternative you could also consider a totally different approach suggested
 ## Summary
 
 As you can see, there are some aspects which are pretty easy to handle with Akka Streams and those which are not. In general, I have mixed impression about the library. It have a good ideas, leveraging the Akka Actors and moving it to the next level, but it feels raw. Personally I'll stick with Akka Actors for now.
+
+We didn't cover the `Updates to orphan documents in a sharded cluster`, as in my case I'm interested in all operations and consider them as idempotent per `_id` field, so it doesn't hurt.
