@@ -74,7 +74,7 @@ To define the `Source`, we can simply iterate over the list of shards and use th
 
 {% gist htimur/11f79e2ba836c42e3da5 %}
 
-### Merging Sources
+### One Source to rule them all
 
 We could process each `Source` separately, but of course it's much easier and more comfortable to work with them as with single `Source`. To do so, we should merge them.
 
@@ -109,6 +109,8 @@ There is already an issue opened on [Github #16916](https://github.com/akka/akka
 As an alternative you could consider suggested in the article [Pitfalls and Workarounds for Tailing the Oplog on a MongoDB Sharded Cluster](https://www.mongodb.com/blog/post/pitfalls-and-workarounds-for-tailing-the-oplog-on-a-mongodb-sharded-cluster) approach.
 
 >Finally a completely different approach would be to tail the oplogs of a majority or even all nodes in a replica set. Since the pair of the `ts & h` fields uniquely identifies each transaction, it is possible to easily merge the results from each oplog on the application side so that the "output" of the tailing thread are the events that have been returned by at least a majority of MongoDB nodes. In this approach you don't need to care about whether a node is a primary or secondary, you just tail the oplog of all of them and all events that are returned by a majority of oplogs are considered valid. If you receive events that do not exist in a majority of the oplogs, such events are skipped and discarded.
+
+I'll try to implement this approach next.
 
 ## Summary
 
