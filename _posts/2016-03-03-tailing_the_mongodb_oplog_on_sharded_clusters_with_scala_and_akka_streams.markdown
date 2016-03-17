@@ -25,6 +25,8 @@ You can also find more information about the MongoDB Sharded Cluster in [documen
 
 The project built as example is available in [github](https://github.com/htimur/mongo_oplog_akka_streams).
 
+The examples provided in this post shouldn't be considered and used as production ready.
+
 ## Libraries and tools
 
 Nothing changes here, we will use the same dependencies as in previous post, but now we will need MongoDB Sharded Cluster instead of Replica Set.
