@@ -23,7 +23,7 @@ There are 2 really good articles, fully covering the topic of Tailing the MongoD
 
 You can also find more information about the MongoDB Sharded Cluster in [documentation hub](https://docs.mongodb.org/manual/core/sharding-introduction/).
 
-The project built as an example is available in [github](https://github.com/htimur/mongo_oplog_akka_streams).
+The project built as an example is available on [github](https://github.com/htimur/mongo_oplog_akka_streams).
 
 The examples provided in this post shouldn't be considered and used as production ready.
 
@@ -59,7 +59,7 @@ I preferrer to use a `case` classes instead of `Document` objects, so I'll defin
 case class Shard(name: String, uri: String)
 {% endhighlight %}
 
-and a method to parse `Document` to `Shard`:
+and the method to parse `Document` to `Shard`:
 
 {% gist htimur/de8b340dd92322bb6096 %}
 and now we can query the collection:
@@ -93,16 +93,18 @@ We will use simplified API for [`Merge`](http://doc.akka.io/docs/akka/2.4.2/scal
 
 ## Error Handling - Failovers and rollbacks
 
-For error handling Akka Streams use [`Supervision Strategies`](http://doc.akka.io/docs/akka/2.4.2/scala/stream/stream-error.html). There are 3 ways to handle exceptions:
+For error handling Akka Streams use [`Supervision Strategies`](http://doc.akka.io/docs/akka/2.4.2/scala/stream/stream-error.html). There are 3 ways to handle errors:
 
 >
 * **Stop** - The stream is completed with failure.
 * **Resume** - The element is dropped and the stream continues.
 * **Restart** - The element is dropped and the stream continues after restarting the stage. Restarting a stage means that any accumulated state is cleared. This is typically performed by creating a new instance of the stage.
 
+The default strategy is **Stop**.
+
 But unfortunately it's not applicable to `ActorPublisher` source and `ActorSubscriber` sink components, so in case of `failovers` and `rollbacks` our `Source` will not be able to recover properly.
 
-There is already an issue opened in github, [#16916](https://github.com/akka/akka/issues/16916) I hope it'll be fixed soon.
+There is already an issue opened on [Github #16916](https://github.com/akka/akka/issues/16916), I hope it'll be fixed soon.
 
 As an alternative you could consider suggested in the article [Pitfalls and Workarounds for Tailing the Oplog on a MongoDB Sharded Cluster](https://www.mongodb.com/blog/post/pitfalls-and-workarounds-for-tailing-the-oplog-on-a-mongodb-sharded-cluster) approach.
 
@@ -110,6 +112,6 @@ As an alternative you could consider suggested in the article [Pitfalls and Work
 
 ## Summary
 
-As you can see, there are some aspects which are pretty easy to handle with Akka Streams and those which are not. In general, I have mixed impression about the library. It have a good ideas, leveraging the Akka Actors and moving it to the next level, but it feels raw. Personally I'll stick with Akka Actors for now.
-
 We didn't cover the topic of `Updates to orphan documents in a sharded cluster`, as in my case I'm interested in all operations and consider them as idempotent per `_id` field, so it doesn't hurt.
+
+As you can see, there are some aspects which are pretty easy to handle with Akka Streams and those which are not. In general, I have mixed impression about the library. It have a good ideas, leveraging the Akka Actors and moving it to the next level, but it feels raw. Personally I'll stick with Akka Actors for now.
