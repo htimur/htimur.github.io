@@ -12,7 +12,7 @@ blog: true
 ---
 
 ## Introduction
-The post is a continuation of a previously published post [Tailing the MongoDB Replica Set Oplog with Scala and Akka Streams](http://khamrakulov.de/tailing_the_mongodb_replica_set_oplog_with_scala_and_akka_streams/)
+The post is a continuation of a previously published post [Tailing the MongoDB Replica Set Oplog with Scala and Akka Streams](http://khamrakulov.de/tailing_the_mongodb_replica_set_oplog_with_scala_and_akka_streams/).
 
 As it was discussed previously, tailing the MongoDB Oplog on Sharded Cluster have some pitfalls compared to the Replica Set. This post will try to cover some aspects of this topic and little bit more.
 
@@ -23,11 +23,11 @@ There are 2 really good article fully covering the topic of Tailing the MongoDB 
 
 You can also find more information about the MongoDB Sharded Cluster in [documentation hub](https://docs.mongodb.org/manual/core/sharding-introduction/).
 
-The full project could be found [here](https://github.com/htimur/mongo_oplog_akka_streams)
+The project built as example is available in [github](https://github.com/htimur/mongo_oplog_akka_streams).
 
 ## Libraries and tools
 
-Nothing changes here, we will use the same dependencies as in previous post, but now you will need MongoDB Sharded Cluster instead of Replica Set.
+Nothing changes here, we will use the same dependencies as in previous post, but now we will need MongoDB Sharded Cluster instead of Replica Set.
 
 ## MongoDB Sharded Cluster
 
@@ -68,7 +68,7 @@ and now we can query the collection:
 
 {% gist htimur/95cba05b006fc21e40c8 %}
 
-Now we have the list of all shards in our MongoDB Sharded Cluster.
+In the end we have the list of all shards in our MongoDB Sharded Cluster.
 
 ## Defining the Source for each shard
 
@@ -104,7 +104,7 @@ For error handling Akka Streams use [`Supervision Strategies`](http://doc.akka.i
 
 But unfortunately it's not applicable to `ActorPublisher` source and `ActorSubscriber` sink components, so in case of `failovers` and `rollbacks` our `Source` will not be able to recover properly.
 
-There is already an issue opened in github, [#16916](https://github.com/akka/akka/issues/16916) which is covering the issue and I hope it'll be fixed soon.
+There is already an issue opened in github, [#16916](https://github.com/akka/akka/issues/16916) I hope it'll be fixed soon.
 
 As an alternative you could also consider a totally different approach suggested in the article [Pitfalls and Workarounds for Tailing the Oplog on a MongoDB Sharded Cluster](https://www.mongodb.com/blog/post/pitfalls-and-workarounds-for-tailing-the-oplog-on-a-mongodb-sharded-cluster).
 
