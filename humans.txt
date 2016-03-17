@@ -1,9 +1,9 @@
-# humanstxt.org/
+# khamrakulov.de/
 
 # TEAM
 
-	Your name - your home
+	Timur Khamrakulov - Berlin, Germany
 
 # TECHNOLOGY
 
-	HTML5, CSS3, JS, JEKYLL
+	scala, akka, java, mongodb, hadoop, hbase, kafka, flink
