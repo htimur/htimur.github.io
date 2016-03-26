@@ -5,6 +5,8 @@ date: 2016-03-16 21:00
 tag:
 - scala
 - akka
+- akka streams
+- reactive programming
 - streams
 - mongodb
 - scala mongo driver
@@ -104,7 +106,7 @@ The default strategy is **Stop**.
 
 But unfortunately it's not applicable to `ActorPublisher` source and `ActorSubscriber` sink components, so in case of `failovers` and `rollbacks` our `Source` will not be able to recover properly.
 
-There is already an issue opened on [Github #16916](https://github.com/akka/akka/issues/16916), I hope it'll be fixed soon.
+There is already an issue opened on [Github #19950](https://github.com/akka/akka/issues/19950), I hope it'll be fixed soon.
 
 As an alternative you could consider suggested in the article [Pitfalls and Workarounds for Tailing the Oplog on a MongoDB Sharded Cluster](https://www.mongodb.com/blog/post/pitfalls-and-workarounds-for-tailing-the-oplog-on-a-mongodb-sharded-cluster) approach.
 

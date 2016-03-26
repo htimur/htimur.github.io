@@ -6,6 +6,7 @@ tag:
 - scala
 - akka
 - streams
+- reactive programming
 - mongodb
 - scala mongo driver
 blog: true
