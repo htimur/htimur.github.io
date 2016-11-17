@@ -107,7 +107,7 @@ libraryDependencies ++= Seq(
  
 For the example I'll be using the `Console reporter`, so lets add the configuration to our `application.conf`. 
  
-{% highlight json %} 
+{% highlight hocon %} 
 metrics { 
   jvm = false 
   logback = false 
@@ -143,7 +143,7 @@ In real application you don't have to use all annotations at ones, as `@Timed` w
  
 After we start the app and access the `Main Page`, it will output metrics to `stdout` as: 
  
-{% highlight %} 
+{% highlight stdout %} 
 -- Counters -------------------------------------------------------------------- 
 controllers.HomeController.index.current 
              count = 1 
@@ -177,7 +177,7 @@ controllers.HomeController.index.timer
  
 And of course you still can access the metrics through REST api, by adding route configuration to your `routes` file: 
  
-{% highlight %} 
+{% highlight conf %} 
 GET /admin/metrics com.kenshoo.play.metrics.MetricsController.metrics 
 {% endhighlight %} 
  
