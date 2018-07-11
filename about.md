@@ -6,23 +6,25 @@ permalink: /about/index.html
 ![Profile Image]({{ site.url }}/{{ site.picture }})
 
 <p>
-I’m a passionate Software Developer with more than 6 years experience and a keen attention for software development enterprise patterns and methodologies, web technologies and architectures. 
+I am a technical, goal and success oriented, data-driven generalist and problem solver. I love building simple, but efficient solutions at organization, teams, infrastructure and code base-level.
 </p>
 <p>
-Starting as junior frontend developer and later moving more towards backend development, in my career I’ve been building my expertise in both the development and operational aspects.
-I’ve been working as a part of team of about 10 people working in bigger cross teams projects and environments as well as an individual freelance developer.
+I use my experience in the software/infrastructure architecture and software engineering to ship bulletproof, decentralized systems with isolated components.
 </p>
 <p>
-I love dealing with highly scalable and fast architectures, network applications, and apis.
-I love clean and self commenting code with a big respect to all modern standards and techniques, I have the passion for learning and improving skills, I'm the big fan of OOP and Functional programming and accept any task as a challenge to make the best I can.
+I enjoy working and coaching developers and teams, help them understand how they fit into the company value chain. I believe that people come because of the tech stack, and stay because they feel that they are doing something valuable.
+</p>
+<p>
+After all the main success driver is the happiness and the feeling of successful accomplishment of the goals.
 </p>
 
 <h2>Primary Skills</h2>
 
 <ul class="skill-list">
-	<li>Agile Methodolgy</li>
-	<li>Design Patterns</li>
-	<li>Object Oriented Design</li>
+	<li>Software/Infrastructure Architecture</li>
+	<li>Cloud Architecture (AWS, GCP)</li>
+	<li>Agile Methodologies</li>
+	<li>Object Oriented Design/Design Patterns</li>
 	<li>Functional Programming</li>
 	<li>CI & CD</li>
 	<li>TDD & BDD</li>
@@ -31,7 +33,7 @@ I love clean and self commenting code with a big respect to all modern standards
 	<li>Java</li>
 	<li>MongoDB</li>
 	<li>Kafka</li>
-	<li>Hadoop</li>
+	<li>Hadoop/Spark</li>
 	<li>Hbase</li>
 	<li>Javascript</li>
 	<li>NodeJS</li>
